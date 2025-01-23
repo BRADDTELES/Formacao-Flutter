@@ -4,59 +4,65 @@ void main() {
 
   runApp(new MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: HomeStateful(),
+    home: Home(),
   ));
 
 }
 
-class HomeStateful extends StatefulWidget {
-  const HomeStateful({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<HomeStateful> createState() => _HomeStatefulState();
+  State<Home> createState() => _HomeState();
 }
 
-class _HomeStatefulState extends State<HomeStateful> {
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-            "Frases do dia",
-            style: TextStyle(
-              color: Colors.white
-            ),
-        ),
+        title: Text("Frases do dia"),
         backgroundColor: Colors.green,
       ),
-      body: Container(
-        margin: EdgeInsets.only(top: 20, bottom: 50, left: 20, right: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Image.asset("images/logo.png"),
-            Text(
-                "Gratidão não é pagamento, mas um reconhecimento que se demonstra no dia a dia.",
-              style: TextStyle(
-                fontSize: 20,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w400,
-                wordSpacing: 10,
+      body: Center(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          //width: double.infinity,
+          /*decoration: BoxDecoration(
+              border: Border.all(width: 3, color: Colors.amber)
+          ),*/
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset("images/logo.png"),
+              Text(
+                "Clique abaixo para gerar uma frase!",
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                    fontSize: 25,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.black
+                ),
               ),
-            ),
-            ElevatedButton(
-                onPressed: (){},
-              style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.green)),
+              ElevatedButton(
                 child: Text(
-                    "Nova Frase",
+                  "Nova Frase",
                   style: TextStyle(
-                    color: Colors.white
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
-            )
-          ],
+                style: const ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(Colors.green),
+                ),
+                onPressed: (){},
+              )
+            ],
+          ),
         ),
-      )
+      ),
     );
   }
 }
