@@ -63,6 +63,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - images/cyborg.png
+    - images/logo.png
     - images/mesa.jpg
     - images/parque.jpg
 

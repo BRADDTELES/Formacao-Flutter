@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 void main() {
+
   runApp(new MaterialApp(
     debugShowCheckedModeBanner: false,
     home: HomeStateful(),
   ));
+
 }
 
 class HomeStateful extends StatefulWidget {
@@ -15,72 +17,46 @@ class HomeStateful extends StatefulWidget {
 }
 
 class _HomeStatefulState extends State<HomeStateful> {
-
-  var _texto = "Jamilton Damasceno";
-
   @override
   Widget build(BuildContext context) {
-
-    print("Build chamado");
-
     return Scaffold(
       appBar: AppBar(
-        title: Text( "Instagram" ),
+        title: Text(
+            "Frases do dia",
+            style: TextStyle(
+              color: Colors.white
+            ),
+        ),
         backgroundColor: Colors.green,
       ),
       body: Container(
+        margin: EdgeInsets.only(top: 20, bottom: 50, left: 20, right: 20),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ElevatedButton(
-                onPressed: (){
-                  setState(() {
-                    _texto = "Curso Flutter";
-                  });
-                },
-                style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.amber)),
-                child: const Text("Clique aqui")
+            Image.asset("images/logo.png"),
+            Text(
+                "Gratidão não é pagamento, mas um reconhecimento que se demonstra no dia a dia.",
+              style: TextStyle(
+                fontSize: 20,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w400,
+                wordSpacing: 10,
+              ),
             ),
-            Text("Nome: $_texto")
+            ElevatedButton(
+                onPressed: (){},
+              style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.green)),
+                child: Text(
+                    "Nova Frase",
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                ),
+            )
           ],
         ),
-      ),
+      )
     );
-
   }
 }
-
-
-class Home extends StatelessWidget {
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-
-    var _titulo = "Instagram";
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text( _titulo ),
-        backgroundColor: Colors.green,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Text("Conteúdo principal"),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.lightGreen,
-        child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Row(
-            children: [
-              Text("Texto 1"),
-              Text("Texto 2"),
-            ],
-          ),
-        ),
-      ),
-    );
-
-  }
-}
-
