@@ -7,21 +7,21 @@ void main() {
     home: Container(
       color: Colors.white,
       child: Column(
-        children: [
-          Text(
-              "Lorem ipsum ",
-            style: TextStyle(
-              fontSize: 50,
-              fontStyle: FontStyle.normal,
-              fontWeight: FontWeight.normal,
-              letterSpacing: 0,
-              wordSpacing: 0,
-              decoration: TextDecoration.underline,
-              decorationStyle: TextDecorationStyle.solid,
-              decorationColor: Colors.greenAccent,
-              color: Colors.black
-            ),
-          ),
+        children: <Widget> [
+          TextButton(
+          //ElevatedButton(
+              onPressed: (){
+                print("Botão pressionado!");
+              },
+              child: Text(
+                  "Clique aqui",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                  decoration: TextDecoration.none
+                ),
+              )
+          )
         ],
       ),
     ),
