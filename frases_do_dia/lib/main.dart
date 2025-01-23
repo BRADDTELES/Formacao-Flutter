@@ -8,14 +8,9 @@ void main() {
       margin: EdgeInsets.only(top: 40),
       decoration:
           BoxDecoration(border: Border.all(width: 3, color: Colors.white)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text("T1"),
-          Text("T2"),
-          Text("T3"),
-        ],
+      child: Image.asset(
+        "images/mesa.jpg",
+        fit: BoxFit.scaleDown,
       ),
     ),
   ));
