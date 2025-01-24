@@ -13,69 +13,50 @@ class _JogoState extends State<Jogo> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            "JokenPo",
+          "JokenPo",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-              border: Border.all(width: 3, color: Colors.amber)
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          //1) text
+          //2) imagem
+          //3) text resultado
+          //4) Linha 3 imagens
+          Padding(
+            padding: EdgeInsets.only(top: 32, bottom: 16),
+            child: Text(
+              "Escolha do App",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-          child: Column(
+          Image.asset("imagens/padrao.png"),
+          Padding(
+            padding: EdgeInsets.only(top: 32, bottom: 16),
+            child: Text(
+              "Escolha uma opção abaixo",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(
-                "Escolha do App:",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              Padding(padding: EdgeInsets.only(top: 10)),
-              Image.asset(
-                "images/papel.png",
-                fit: BoxFit.scaleDown,
-                width: 90,
-                height: 90,
-              ),
-              Padding(padding: EdgeInsets.only(top: 10)),
-              Text(
-                "Resultado",
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              //Linha 3 imagens
-              Padding(padding: EdgeInsets.only(top: 20)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Image.asset(
-                    "images/pedra.png",
-                      fit: BoxFit.scaleDown,
-                      width: 90,
-                      height: 90
-                  ),
-                  Image.asset(
-                    "images/papel.png",
-                      fit: BoxFit.scaleDown,
-                      width: 90,
-                      height: 90
-                  ),
-                  Image.asset(
-                    "images/tesoura.png",
-                      fit: BoxFit.scaleDown,
-                      width: 90,
-                      height: 90
-                  ),
-                ],
-              )
+              Image.asset("imagens/pedra.png", height: 100,),
+              Image.asset("imagens/papel.png", height: 100,),
+              Image.asset("imagens/tesoura.png", height: 100,),
             ],
-          ),
-        ),
+          )
+        ],
       ),
     );
   }
