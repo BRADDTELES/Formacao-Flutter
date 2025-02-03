@@ -11,6 +11,38 @@ class _AlcoolGasolinaState extends State<AlcoolGasolina> {
 
   TextEditingController _controllerAlcool = TextEditingController();
   TextEditingController _controllerGasolina = TextEditingController();
+  String _textoResultado = "";
+
+  void _calcular(){
+
+    double? precoAlcool = double.tryParse( _controllerAlcool.text );
+    double? precoGasolina = double.tryParse( _controllerGasolina.text );
+
+    if( precoAlcool == null || precoGasolina == null ){
+      setState(() {
+        _textoResultado = "Número inválido, digite números maiores que 0 e utilizando (.) ";
+      });
+    }else{
+      if( (precoAlcool / precoGasolina) >= 0.7 ){
+        setState(() {
+          _textoResultado = "Melhor abastecer com gasolina";
+        });
+      }else{
+        setState(() {
+          _textoResultado = "Melhor abastecer com alcool";
+        });
+      }
+
+      _limparCampos();
+
+    }
+
+  }
+
+  void _limparCampos(){
+    _controllerGasolina.text = "";
+    _controllerAlcool.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,12 +98,13 @@ class _AlcoolGasolinaState extends State<AlcoolGasolina> {
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                   style: TextButton.styleFrom(backgroundColor: Colors.blue),
-                  onPressed: (){},
+                  onPressed: _calcular,
                 ),
               ),
-              Padding(padding: EdgeInsets.only(top: 20),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
                 child: Text(
-                  "Resultado",
+                  _textoResultado,
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold),
