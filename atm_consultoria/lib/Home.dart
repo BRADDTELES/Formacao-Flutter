@@ -8,6 +8,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  void _abrirEmpresa() {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,39 +24,45 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.green,
       ),
       body: Container(
-        padding: EdgeInsets.only(top: 120, bottom: 220),
+        padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
               "imagens/logo.png",
-              fit: BoxFit.scaleDown,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.asset(
-                  "imagens/menu_empresa.png",
-                  fit: BoxFit.scaleDown,
-                ),
-                Image.asset(
-                  "imagens/menu_servico.png",
-                  fit: BoxFit.scaleDown,
-                ),
-              ],
+            Padding(
+                padding: EdgeInsets.only(top: 32),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: _abrirEmpresa,
+                    child: Image.asset("imagens/menu_empresa.png"),
+                  ),
+                  GestureDetector(
+                    onTap: _abrirEmpresa,
+                    child: Image.asset("imagens/menu_servico.png"),
+                  ),
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Image.asset(
-                  "imagens/menu_cliente.png",
-                  fit: BoxFit.scaleDown,
-                ),
-                Image.asset(
-                  "imagens/menu_contato.png",
-                  fit: BoxFit.scaleDown,
-                ),
-              ],
+            Padding(
+              padding: EdgeInsets.only(top: 32),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: _abrirEmpresa,
+                    child: Image.asset("imagens/menu_cliente.png"),
+                  ),
+                  GestureDetector(
+                    onTap: _abrirEmpresa,
+                    child: Image.asset("imagens/menu_contato.png"),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
