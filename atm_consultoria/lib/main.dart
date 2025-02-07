@@ -9,10 +9,6 @@ void main(){
   runApp(
       const MaterialApp(
         home: Home(),
-        //home: TelaEmpresa(),
-        //home: TelaServico(),
-        //home: TelaCliente(),
-        //home: TelaContato(),
         debugShowCheckedModeBanner: false,
       )
   );
