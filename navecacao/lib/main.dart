@@ -4,7 +4,11 @@ import 'package:navecacao/TelaSecundaria.dart';
 void main(){
   runApp(
       MaterialApp(
-        home: TelaPrincipal(),
+        initialRoute: "/",
+        routes: {
+          "/secundaria" : (context) => TelaSecundaria(),
+        },
+        home: const TelaPrincipal(),
       )
   );
 }
@@ -21,7 +25,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tela Principal', style: TextStyle(color: Colors.white),),
+        title: const Text('Tela Principal', style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.orange,
       ),
       body: Container(
@@ -33,12 +37,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               child: Text("Ir para a segunda tela"),
               style: ElevatedButton.styleFrom(padding: EdgeInsets.all(15)),
               onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TelaSecundaria("Jamilton"),
-                    )
-                );
+                Navigator.pushNamed(context, "/secundaria");
               },
             ),
 
