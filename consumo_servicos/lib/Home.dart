@@ -11,12 +11,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  TextEditingController _controllerCep = TextEditingController();
+  String _resultado = "Resultado";
+
   _recuperarCep() async {
 
-    /*String cep = "";
-    String url = "https://viacep.com.br/ws/$cep/json/";*/
     //String url = "https://viacep.com.br/ws/01001000/json/"; //Erro
-    var url = Uri.parse("https://viacep.com.br/ws/74915250/json/");
+    String cepDigitado = _controllerCep.text;
+    var url = Uri.parse("https://viacep.com.br/ws/$cepDigitado/json/");
     http.Response response;
 
     response = await http.get( url );
@@ -26,7 +28,11 @@ class _HomeState extends State<Home> {
     String localidade = retorno["localidade"];
     String estado = retorno["estado"];
 
-    print("Resposta:\nlogradouro: $logradouro\nbairro: $bairro\n"
+    setState(() {
+      _resultado = "$logradouro, $bairro, $localidade, $estado";
+    });
+
+    //print("Resposta:\nlogradouro: $logradouro\nbairro: $bairro\n"
         "localidade: $localidade\nestado: $estado");
 
     //print("resposta: " + response.statusCode.toString());
@@ -47,10 +53,19 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(40),
         child: Column(
           children: [
+            TextField(
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: "Digite o cep: ex. 05428200"
+              ),
+              style: TextStyle(fontSize: 20),
+              controller: _controllerCep,
+            ),
             ElevatedButton(
                 onPressed: _recuperarCep,
                 child: const Text("Clique aqui")
-            )
+            ),
+            Text( _resultado ),
           ],
         ),
       ),
