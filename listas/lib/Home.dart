@@ -46,6 +46,48 @@ class _HomeState extends State<Home> {
               //print("item ${ _itens[indice]["titulo"] }");
 
               return ListTile(
+                onTap: (){
+                  //print("clique com onTap $indice");
+                  showDialog(
+                      context: context,
+                      builder: (context){
+                        return AlertDialog(
+                          title: Text( _itens[indice]["titulo"] ),
+                          titlePadding: EdgeInsets.all(20),
+                          titleTextStyle: TextStyle(
+                            fontSize: 20,
+                            color: Colors.orange
+                          ),
+                          content: Text( _itens[indice]["descricao"] ),
+                          //contentPadding: EdgeInsets.all(80),
+                          //backgroundColor: Colors.grey,
+                          actions: [
+                            ElevatedButton(
+                                onPressed: (){
+                                  print("Selecionado sim");
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "Sim"
+                                )
+                            ),
+                            ElevatedButton(
+                                onPressed: (){
+                                  print("Selecionado não");
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                    "Não"
+                                )
+                            ),
+                          ],
+                        );
+                      }
+                  );
+                },
+                /*onLongPress: (){
+                  print("clique com onLongPress");
+                },*/
                 title: Text( _itens[indice]["titulo"] ),
                 subtitle: Text( _itens[indice]["descricao"] ),
               );
