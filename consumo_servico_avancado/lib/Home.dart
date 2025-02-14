@@ -36,14 +36,10 @@ class _HomeState extends State<Home> {
 
   _post() async {
 
+    Post post = new Post(120, 0, "Titulo", "Corpo da postagem");
     var _urlBasePost = Uri.parse("https://jsonplaceholder.typicode.com/posts");
     var corpo = json.encode(
-        {
-          "userId": 120,
-          "id": null,
-          "title": "Titulo",
-          "body": "Corpo da postagem"
-        }
+      post.toJson()
     );
     http.Response response = await http.post(
         _urlBasePost,
@@ -58,15 +54,53 @@ class _HomeState extends State<Home> {
 
   _put() async {
 
-    //http.Response response = await http.put( _urlBase );
-
+    Post post = new Post(120, 0, "Titulo alterado", "Corpo da postagem alterada");
+    var _urlBasePut = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
+    var corpo = json.encode(
+        post.toJson()
+    );
+    http.Response response = await http.put(
+        _urlBasePut,
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      body: corpo,
+    );
+    print("resposta: ${response.statusCode}");
+    print("resposta: ${response.body}");
   }
 
   _patch() async {
 
+    var _urlBasePatch = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
+    var corpo = json.encode(
+        {
+          "userId": 120,
+          "body": "Corpo da postagem alterada unico"
+        }
+    );
+    http.Response response = await http.patch(
+      _urlBasePatch,
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+      body: corpo,
+    );
+    print("resposta: ${response.statusCode}");
+    print("resposta: ${response.body}");
   }
 
   _delete() async {
+
+    var _urlBaseDelete = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
+    http.Response response = await http.delete( _urlBaseDelete );
+    if( response.statusCode == 200 ) {
+      print("Sucesso ao deletar dados");
+    }else {
+      print("Erro ao deletar dados");
+    }
+    print("resposta: ${response.statusCode}");
+    print("resposta: ${response.body}");
 
   }
 
@@ -92,6 +126,7 @@ class _HomeState extends State<Home> {
                 ),
                 ElevatedButton(
                   onPressed: _put,
+                  //onPressed: _patch,
                   child: Text("Atualizar"),
                 ),
                 ElevatedButton(
