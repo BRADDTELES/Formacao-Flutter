@@ -34,6 +34,42 @@ class _HomeState extends State<Home> {
 
   }
 
+  _post() async {
+
+    var _urlBasePost = Uri.parse("https://jsonplaceholder.typicode.com/posts");
+    var corpo = json.encode(
+        {
+          "userId": 120,
+          "id": null,
+          "title": "Titulo",
+          "body": "Corpo da postagem"
+        }
+    );
+    http.Response response = await http.post(
+        _urlBasePost,
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      body: corpo,
+    );
+    print("resposta: ${response.statusCode}");
+    print("resposta: ${response.body}");
+  }
+
+  _put() async {
+
+    //http.Response response = await http.put( _urlBase );
+
+  }
+
+  _patch() async {
+
+  }
+
+  _delete() async {
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,55 +80,77 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: FutureBuilder<List<Post>>(
-        future: _recuperarPostagens(),
-        builder: (context, snapshot){
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                ElevatedButton(
+                    onPressed: _post,
+                    child: Text("Salvar"),
+                ),
+                ElevatedButton(
+                  onPressed: _put,
+                  child: Text("Atualizar"),
+                ),
+                ElevatedButton(
+                  onPressed: _delete,
+                  child: Text("Remover"),
+                ),
+              ],
+            ),
 
-          switch( snapshot.connectionState ){
-            case ConnectionState.none :
-              print("conexao none: Sem conexão");
-              break;
-            case ConnectionState.waiting :
-              print("conexao waiting: Aguardando...");
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+            Expanded(
+                child: FutureBuilder<List<Post>>(
+                  future: _recuperarPostagens(),
+                  builder: (context, snapshot){
 
-            case ConnectionState.active :
-              print("conexao active: Conexão ativa");
-              //break;
-            case ConnectionState.done :
-              print("conexao done: Carregou!");
-              if ( snapshot.hasError ){
-                print("lista: Erro ao carregar ");
-                return Center(
-                  child: Text("Erro ao carregar dados: ${snapshot.error}"),
-                );
-              }else {
+                    switch( snapshot.connectionState ){
+                      case ConnectionState.none :
+                        return const Center(
+                          child: Text("Sem conexão"),
+                        );
+                      case ConnectionState.waiting :
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      case ConnectionState.active :
+                        return const Center(
+                          child: Text("Conexão ativa"),
+                        );
+                      case ConnectionState.done :
+                        if ( snapshot.hasError ){
+                          print("lista: Erro ao carregar ");
+                          return Center(
+                            child: Text("Erro ao carregar dados: ${snapshot.error}"),
+                          );
+                        }else {
 
-                print("lista dentro do else: carregou!! ");
-                return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index){
+                          print("lista dentro do else: carregou!! ");
+                          return ListView.builder(
+                              itemCount: snapshot.data!.length,
+                              itemBuilder: (context, index){
 
-                    Post post = snapshot.data![index];
+                                Post post = snapshot.data![index];
 
-                    return ListTile(
-                      title: Text( post.title ),
-                      subtitle: Text( post.id.toString() ),
-                    );
+                                return ListTile(
+                                  title: Text( post.title ),
+                                  subtitle: Text( post.id.toString() ),
+                                );
 
-                  }
-                );
+                              }
+                          );
 
-              }
-          }
+                        }
+                    }
 
-          return const Center(
-            child: Text("Nenhum dado encontrado."),
-          );
+                  },
+                ),
+            ),
 
-        },
+          ],
+        ),
       ),
     );
   }
