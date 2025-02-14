@@ -50,30 +50,32 @@ class _HomeState extends State<Home> {
 
           switch( snapshot.connectionState ){
             case ConnectionState.none :
-              print("conexao none");
+              print("conexao none: Sem conexão");
               break;
             case ConnectionState.waiting :
-              print("conexao waiting");
+              print("conexao waiting: Aguardando...");
               return const Center(
                 child: CircularProgressIndicator(),
               );
 
             case ConnectionState.active :
-              print("conexao active");
-              break;
+              print("conexao active: Conexão ativa");
+              //break;
             case ConnectionState.done :
-              print("conexao done");
+              print("conexao done: Carregou!");
               if ( snapshot.hasError ){
                 print("lista: Erro ao carregar ");
+                return Center(
+                  child: Text("Erro ao carregar dados: ${snapshot.error}"),
+                );
               }else {
 
                 print("lista dentro do else: carregou!! ");
                 return ListView.builder(
-                  itemCount: snapshot.data?.length,
+                  itemCount: snapshot.data!.length,
                   itemBuilder: (context, index){
 
-                    List<Post>? lista = snapshot.data;
-                    Post post = lista![index];
+                    Post post = snapshot.data![index];
 
                     return ListTile(
                       title: Text( post.title ),
@@ -87,7 +89,7 @@ class _HomeState extends State<Home> {
           }
 
           return const Center(
-            child: Text("Não gerou a lista da API"),
+            child: Text("Nenhum dado encontrado."),
           );
 
         },
