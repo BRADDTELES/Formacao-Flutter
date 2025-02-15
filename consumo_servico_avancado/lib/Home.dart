@@ -36,13 +36,13 @@ class _HomeState extends State<Home> {
 
   _post() async {
 
-    Post post = new Post(120, 0, "Titulo", "Corpo da postagem");
-    var _urlBasePost = Uri.parse("https://jsonplaceholder.typicode.com/posts");
+    Post post = Post(120, 0, "Titulo", "Corpo da postagem");
+    var urlBasePost = Uri.parse("https://jsonplaceholder.typicode.com/posts");
     var corpo = json.encode(
       post.toJson()
     );
     http.Response response = await http.post(
-        _urlBasePost,
+        urlBasePost,
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
@@ -54,13 +54,13 @@ class _HomeState extends State<Home> {
 
   _put() async {
 
-    Post post = new Post(120, 0, "Titulo alterado", "Corpo da postagem alterada");
-    var _urlBasePut = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
+    Post post = Post(120, 0, "Titulo alterado", "Corpo da postagem alterada");
+    var urlBasePut = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
     var corpo = json.encode(
         post.toJson()
     );
     http.Response response = await http.put(
-        _urlBasePut,
+        urlBasePut,
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
 
   _patch() async {
 
-    var _urlBasePatch = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
+    var urlBasePatch = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
     var corpo = json.encode(
         {
           "userId": 120,
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> {
         }
     );
     http.Response response = await http.patch(
-      _urlBasePatch,
+      urlBasePatch,
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       },
@@ -92,8 +92,8 @@ class _HomeState extends State<Home> {
 
   _delete() async {
 
-    var _urlBaseDelete = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
-    http.Response response = await http.delete( _urlBaseDelete );
+    var urlBaseDelete = Uri.parse("https://jsonplaceholder.typicode.com/posts/2");
+    http.Response response = await http.delete( urlBaseDelete );
     if( response.statusCode == 200 ) {
       print("Sucesso ao deletar dados");
     }else {
@@ -115,23 +115,23 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blue,
       ),
       body: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             Row(
               children: [
                 ElevatedButton(
                     onPressed: _post,
-                    child: Text("Salvar"),
+                    child: const Text("Salvar"),
                 ),
                 ElevatedButton(
                   onPressed: _put,
                   //onPressed: _patch,
-                  child: Text("Atualizar"),
+                  child: const Text("Atualizar"),
                 ),
                 ElevatedButton(
                   onPressed: _delete,
-                  child: Text("Remover"),
+                  child: const Text("Remover"),
                 ),
               ],
             ),

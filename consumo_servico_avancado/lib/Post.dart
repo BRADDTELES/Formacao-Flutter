@@ -9,10 +9,10 @@ class Post{
 
   Map toJson() {
     return {
-      "userId": this._userId,
-      "id": this._id,
-      "title": this._title,
-      "body": this._body
+      "userId": _userId,
+      "id": _id,
+      "title": _title,
+      "body": _body
     };
   }
 
