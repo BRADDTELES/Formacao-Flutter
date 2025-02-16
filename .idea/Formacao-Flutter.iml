@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Joken Po/joken_po/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/Joken Po/joken_po/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/Joken Po/joken_po/build" />
+      <excludeFolder url="file://$MODULE_DIR$/alcool_gasolina/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/alcool_gasolina/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/alcool_gasolina/build" />
+      <excludeFolder url="file://$MODULE_DIR$/atm_consultoria/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/atm_consultoria/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/atm_consultoria/build" />
+      <excludeFolder url="file://$MODULE_DIR$/cara_ou_coroa/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/cara_ou_coroa/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/cara_ou_coroa/build" />
+      <excludeFolder url="file://$MODULE_DIR$/consumo_servico_avancado/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/consumo_servico_avancado/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/consumo_servico_avancado/build" />
+      <excludeFolder url="file://$MODULE_DIR$/consumo_servicos/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/consumo_servicos/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/consumo_servicos/build" />
+      <excludeFolder url="file://$MODULE_DIR$/entrada_dados/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/entrada_dados/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/entrada_dados/build" />
+      <excludeFolder url="file://$MODULE_DIR$/frases_do_dia/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/frases_do_dia/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/frases_do_dia/build" />
+      <excludeFolder url="file://$MODULE_DIR$/listas/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/listas/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/listas/build" />
+      <excludeFolder url="file://$MODULE_DIR$/navecacao/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/navecacao/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/navecacao/build" />
+      <excludeFolder url="file://$MODULE_DIR$/preco_bitcoin/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/preco_bitcoin/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/preco_bitcoin/build" />
+      <excludeFolder url="file://$MODULE_DIR$/youtube/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/youtube/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/youtube/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
