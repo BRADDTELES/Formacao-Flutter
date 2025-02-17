@@ -19,10 +19,10 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     List<Widget> telas = [
-      Inicio(),
-      EmAlta(),
-      Inscricao(),
-      Biblioteca(),
+      const Inicio(),
+      const EmAlta(),
+      const Inscricao(),
+      const Biblioteca(),
     ];
 
     return Scaffold(
@@ -32,26 +32,26 @@ class _HomeState extends State<Home> {
           width: 98,
           height: 22,
         ),
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
             color: Colors.black,
           opacity: 0.5,
         ),
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-            icon: Icon(Icons.videocam),
+            icon: const Icon(Icons.videocam),
             onPressed: (){
               print("acao: videocam");
             },
           ),
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: (){
               print("acao: search");
             },
           ),
           IconButton(
-            icon: Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle),
             onPressed: (){
               print("acao: account_circle");
             },
@@ -68,7 +68,7 @@ class _HomeState extends State<Home> {
         },
         type: BottomNavigationBarType.fixed,
         fixedColor: Colors.red,
-          items: [
+          items: const [
             BottomNavigationBarItem(
               //backgroundColor: Colors.orange,
                 icon: Icon(Icons.home),

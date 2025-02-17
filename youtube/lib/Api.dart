@@ -13,14 +13,7 @@ class Api {
 
     http.Response response = await http.get(
         Uri.parse(
-            URL_BASE + "search"
-                "?part=snippet"
-                "&type=video"
-                "&maxResults=20"
-                "&order=date"
-                "&key=$CHAVE_YOUTUBE_API"
-                "&channelId=$ID_CANAL"
-                "&q=$pesquisa"
+            "${URL_BASE}search?part=snippet&type=video&maxResults=20&order=date&key=$CHAVE_YOUTUBE_API&channelId=$ID_CANAL&q=$pesquisa"
         )
     );
     
@@ -36,7 +29,7 @@ class Api {
       ).toList();
 
       for( var video in videos ){
-        print("resultado: " + video.titulo.toString() );
+        print("resultado: ${video.titulo}" );
       }
       //print("Resultado: " + videos.toString());
 

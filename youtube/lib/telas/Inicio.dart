@@ -16,7 +16,7 @@ class _InicioState extends State<Inicio> {
     api.pesquisar("");
 
     return Container(
-      child: Center(
+      child: const Center(
         child: Text(
             "Inicio",
           style: TextStyle(

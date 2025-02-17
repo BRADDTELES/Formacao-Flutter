@@ -4,6 +4,6 @@ import 'Home.dart';
 
 void main(){
   runApp(
-      MaterialApp(home: Home(),)
+      const MaterialApp(home: Home(),)
   );
 }
