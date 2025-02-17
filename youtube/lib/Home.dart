@@ -4,6 +4,8 @@ import 'package:youtube/telas/EmAlta.dart';
 import 'package:youtube/telas/Inicio.dart';
 import 'package:youtube/telas/Inscricao.dart';
 
+import 'CustomSearchDelegate.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -38,16 +40,22 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.white,
         actions: [
+
           IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () async {
+              String? res = await showSearch(
+                  context: context,
+                  delegate: CustomSearchDelagate()
+              );
+              print("resultado: digitado " + res.toString() );
+            },
+          ),
+
+          /*IconButton(
             icon: const Icon(Icons.videocam),
             onPressed: (){
               print("acao: videocam");
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: (){
-              print("acao: search");
             },
           ),
           IconButton(
@@ -55,7 +63,7 @@ class _HomeState extends State<Home> {
             onPressed: (){
               print("acao: account_circle");
             },
-          ),
+          ),*/
         ],
       ),
       body: Container(
