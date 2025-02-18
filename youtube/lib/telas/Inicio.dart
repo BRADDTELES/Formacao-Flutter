@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:youtube/Api.dart';
 import 'package:youtube/model/Video.dart';
+import 'package:video_player/video_player.dart';
 
 class Inicio extends StatefulWidget {
 
@@ -12,6 +13,7 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+
 
   _listarVideos(String pesquisa){
     /*Future< List<Video> > videos;
@@ -47,24 +49,29 @@ class _InicioState extends State<Inicio> {
                     List<Video>? videos = snapshot.data;
                     Video video = videos![ index ];
 
-                    return Column(
-                      children: [
-                        Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
+                    return GestureDetector(
+                      onTap: (){
+                        //PAREI AQUI
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
                                 image: NetworkImage(
-                                  video.imagem!
+                                    video.imagem!
                                 ),
+                              ),
                             ),
                           ),
-                        ),
-                        ListTile(
-                          title: Text( video.titulo! ),
-                          subtitle: Text( video.canal! ),
-                        )
-                      ],
+                          ListTile(
+                            title: Text( video.titulo! ),
+                            subtitle: Text( video.canal! ),
+                          )
+                        ],
+                      ),
                     );
                   },
                   separatorBuilder: (context, index) => Divider(
