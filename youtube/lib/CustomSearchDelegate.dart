@@ -44,7 +44,9 @@ class CustomSearchDelagate extends SearchDelegate<String> {
   Widget buildSuggestions(BuildContext context) {
     //print("resultado: digitado " + query );
     return Container();
-    /*List<String> lista = [];
+
+    /* SUGESTÇÕES DE PESQUISA
+    List<String> lista = [];
     if ( query.isNotEmpty ){
       lista = [
         "Android", "Android navegação", "IOS", "Jogos"
