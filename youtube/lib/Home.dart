@@ -16,15 +16,16 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   int _indiceAtual = 0;
+  String _resultado = "";
 
   @override
   Widget build(BuildContext context) {
 
     List<Widget> telas = [
-      const Inicio(),
-      const EmAlta(),
-      const Inscricao(),
-      const Biblioteca(),
+      Inicio( _resultado ),
+      EmAlta(),
+      Inscricao(),
+      Biblioteca(),
     ];
 
     return Scaffold(
@@ -48,6 +49,9 @@ class _HomeState extends State<Home> {
                   context: context,
                   delegate: CustomSearchDelagate()
               );
+              setState(() {
+                _resultado = res.toString();
+              });
               print("resultado: digitado " + res.toString() );
             },
           ),
