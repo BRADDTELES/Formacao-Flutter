@@ -25,6 +25,31 @@ class _InicioState extends State<Inicio> {
     Api api = Api();
     return api.pesquisar( pesquisa );
   }
+
+  @override
+  void initState() {
+    super.initState();
+    print("chamado 1 - initState");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("chamado 2 - didChangeDependencies");
+  }
+
+  @override
+  void didUpdateWidget(covariant Inicio oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("chamado 2 - didUpdateWidget");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print("chamado 4 - dispose");
+  }
+
   void _openVideoPlayer(String videoId) {
     Navigator.push(
       context,
@@ -44,6 +69,8 @@ class _InicioState extends State<Inicio> {
 
   @override
   Widget build(BuildContext context) {
+
+    print("chamado 3 - build");
 
     return FutureBuilder< List<Video> >(
 
