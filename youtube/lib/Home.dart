@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube/model/Video.dart';
 import 'package:youtube/telas/Biblioteca.dart';
 import 'package:youtube/telas/EmAlta.dart';
 import 'package:youtube/telas/Inicio.dart';

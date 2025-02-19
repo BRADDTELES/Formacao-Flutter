@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:youtube/Api.dart';
 import 'package:youtube/model/Video.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_embed/controller/video_controller.dart';
+import 'package:youtube_player_embed/youtube_player_embed.dart';
 
 class Inicio extends StatefulWidget {
 
   String pesquisa = "";
-  Inicio(this.pesquisa, {super.key});
+  Inicio( this.pesquisa, {super.key});
 
   @override
   State<Inicio> createState() => _InicioState();
@@ -14,6 +15,7 @@ class Inicio extends StatefulWidget {
 
 class _InicioState extends State<Inicio> {
 
+  VideoController? videoController;
 
   _listarVideos(String pesquisa){
     /*Future< List<Video> > videos;
@@ -22,6 +24,22 @@ class _InicioState extends State<Inicio> {
     return videos;*/
     Api api = Api();
     return api.pesquisar( pesquisa );
+  }
+  void _openVideoPlayer(String videoId) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => YoutubePlayerEmbed(
+          key: ValueKey(videoId),
+          callBackVideoController: (controller){
+            videoController = controller;
+          },
+          videoId: videoId,
+          autoPlay: true,
+          aspectRatio: 16 / 9,
+        ),
+      ),
+    );
   }
 
   @override
@@ -52,6 +70,7 @@ class _InicioState extends State<Inicio> {
                     return GestureDetector(
                       onTap: (){
                         //PAREI AQUI
+                        _openVideoPlayer(video.id);
                       },
                       child: Column(
                         children: [
