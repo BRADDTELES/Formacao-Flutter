@@ -1,0 +1,2 @@
+C:/AndroidStudioProjects/Formacao-Flutter/manipulacao_dados_preferencias/android/app/.cxx/Debug/my4n6v5p/x86_64/CMakeFiles/edit_cache.dir
+C:/AndroidStudioProjects/Formacao-Flutter/manipulacao_dados_preferencias/android/app/.cxx/Debug/my4n6v5p/x86_64/CMakeFiles/rebuild_cache.dir
