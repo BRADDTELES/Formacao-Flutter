@@ -8,6 +8,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  List _listaTarefas = ["Ir ao mercado", "Estudar", "Exercício do dia"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,21 +18,70 @@ class _HomeState extends State<Home> {
         title: Text("Lista de tarefas", style: TextStyle(color: Colors.white),),
         backgroundColor: Colors.purple,
       ),
-      body: ListView(
-        padding: EdgeInsets.all(16),
-        children: [
-          Text("Ir ao mercado", style: TextStyle(fontSize: 20),),
-          Padding(padding: EdgeInsets.only(bottom: 16)),
-          Text("estudar", style: TextStyle(fontSize: 20),),
-          Padding(padding: EdgeInsets.only(bottom: 16)),
-          Text("teste", style: TextStyle(fontSize: 20),),
-        ],
-      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.purple,
-          foregroundColor: Colors.white,
-          onPressed: (){},
+        foregroundColor: Colors.white,
+        onPressed: (){
+          showDialog(
+              context: context,
+              builder: (context){
+
+                return AlertDialog(
+                  title: Text("Adicionar Tarefa"),
+                  content: TextField(
+                    decoration: InputDecoration(
+                      labelText: "Digite sua tarefa"
+                    ),
+                    onChanged: (text){
+
+                    },
+                  ),
+                  actions: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.purple,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: Text("Cancelar"),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.purple,
+                        foregroundColor: Colors.white,
+                      ),
+                      child: Text("Salvar"),
+                      onPressed: () {
+                        //salvar
+
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
+                );
+
+              },
+          );
+        },
         child: Icon(Icons.add),
+      ),
+      body: Column(
+        children: [
+
+          Expanded(
+            child: ListView.builder(
+            itemCount: _listaTarefas.length,
+              itemBuilder: (context, index){
+
+                return ListTile(
+                  title: Text(_listaTarefas[index]),
+                );
+
+              }),
+
+          ),
+        ],
       ),
     );
   }
