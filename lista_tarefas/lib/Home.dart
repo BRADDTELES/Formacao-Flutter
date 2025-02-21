@@ -16,6 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   List _listaTarefas = [];
+  TextEditingController _controllerTarefa = TextEditingController();
 
   Future<File> _getFile() async {
 
@@ -24,15 +25,25 @@ class _HomeState extends State<Home> {
 
   }
 
+  _salvaTarefa() {
+
+    String textoDigitado = _controllerTarefa.text;
+
+    Map<String, dynamic> tarefa = Map();
+    tarefa["titulo"] = textoDigitado;
+    tarefa["realizada"] = false;
+
+    setState(() {
+      _listaTarefas.add( tarefa );
+    });
+    _salvarArquivo();
+    _controllerTarefa.text = "";
+
+  }
+
   _salvarArquivo() async {
 
     var arquivo = await _getFile();
-
-    //Criar dados
-    Map<String, dynamic> tarefa = Map();
-    tarefa["titulo"] = "Ir ao mercado";
-    tarefa["realizada"] = false;
-    _listaTarefas.add( tarefa );
 
     String dados = json.encode( _listaTarefas );
     arquivo.writeAsString( dados );
@@ -87,6 +98,7 @@ class _HomeState extends State<Home> {
                 return AlertDialog(
                   title: Text("Adicionar Tarefa"),
                   content: TextField(
+                    controller: _controllerTarefa,
                     decoration: InputDecoration(
                       labelText: "Digite sua tarefa"
                     ),
@@ -111,7 +123,7 @@ class _HomeState extends State<Home> {
                       child: Text("Salvar"),
                       onPressed: () {
                         //salvar
-
+                        _salvaTarefa();
                         Navigator.pop(context);
                       },
                     ),
@@ -131,9 +143,20 @@ class _HomeState extends State<Home> {
             itemCount: _listaTarefas.length,
               itemBuilder: (context, index){
 
-                return ListTile(
-                  title: Text(_listaTarefas[index]['titulo']),
+                return CheckboxListTile(
+
+                  value: _listaTarefas[index]['realizado'],
+                  onChanged: (valorAlterado){
+                    setState(() {
+                      _listaTarefas[index]['realizado'] = valorAlterado;
+                    });
+                    _salvarArquivo();
+                  },
+
                 );
+                /*return ListTile(
+                  title: Text(_listaTarefas[index]['titulo']),
+                );*/
 
               }),
 
