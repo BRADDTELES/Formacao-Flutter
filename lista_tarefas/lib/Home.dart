@@ -144,15 +144,15 @@ class _HomeState extends State<Home> {
               itemBuilder: (context, index){
 
                 return CheckboxListTile(
-
+                  title: Text(_listaTarefas[index]['titulo']),
                   value: _listaTarefas[index]['realizado'],
-                  onChanged: (valorAlterado){
+                  onChanged: (bool? valorAlterado){
                     setState(() {
                       _listaTarefas[index]['realizado'] = valorAlterado;
                     });
                     _salvarArquivo();
                   },
-
+                  tristate: true,
                 );
                 /*return ListTile(
                   title: Text(_listaTarefas[index]['titulo']),
