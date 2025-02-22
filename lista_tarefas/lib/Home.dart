@@ -32,6 +32,7 @@ class _HomeState extends State<Home> {
     Map<String, dynamic> tarefa = Map();
     tarefa["titulo"] = textoDigitado;
     tarefa["realizada"] = false;
+    //tarefa["realizada"] = null;
 
     setState(() {
       _listaTarefas.add( tarefa );
@@ -63,6 +64,48 @@ class _HomeState extends State<Home> {
 
   }
 
+  Widget criarItemLista(context, index) {
+
+    final item = _listaTarefas[index]["titulo"];
+
+    return Dismissible(
+        key: Key(item),
+        direction: DismissDirection.endToStart,
+        onDismissed: (direction){
+
+          //Remove item da lista
+          _listaTarefas.removeAt(index);
+          _salvarArquivo();
+
+        },
+        background: Container(
+          color: Colors.red,
+          padding: EdgeInsets.all(16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Icon(
+                Icons.delete,
+                color: Colors.white,
+              )
+            ],
+          ),
+        ),
+        child: CheckboxListTile(
+          title: Text(_listaTarefas[index]['titulo'].toString()),
+          value: _listaTarefas[index]['realizado'],
+          onChanged: (bool? valorAlterado ){
+            setState(() {
+              _listaTarefas[index]['realizado'] = valorAlterado;
+            });
+            _salvarArquivo();
+          },
+          tristate: true,
+        ),
+    );
+
+  }
+
   @override
   void initState() {
     super.initState();
@@ -79,7 +122,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     //_salvarArquivo();
-    print("itens: " + _listaTarefas.toString() );
+    print("itens: $_listaTarefas" );
 
     return Scaffold(
       appBar: AppBar(
@@ -141,25 +184,8 @@ class _HomeState extends State<Home> {
           Expanded(
             child: ListView.builder(
             itemCount: _listaTarefas.length,
-              itemBuilder: (context, index){
-
-                return CheckboxListTile(
-                  title: Text(_listaTarefas[index]['titulo']),
-                  value: _listaTarefas[index]['realizado'],
-                  onChanged: (bool? valorAlterado){
-                    setState(() {
-                      _listaTarefas[index]['realizado'] = valorAlterado;
-                    });
-                    _salvarArquivo();
-                  },
-                  tristate: true,
-                );
-                /*return ListTile(
-                  title: Text(_listaTarefas[index]['titulo']),
-                );*/
-
-              }),
-
+              itemBuilder: criarItemLista,
+            ),
           ),
         ],
       ),
