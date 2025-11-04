@@ -5,3 +5,12 @@
 /zencoder/chats
 /zencoder-chat-index.xml
 /zencoder-chats-dedicated.xml
+deploymentTargetSelector.xml
+deviceManager.xml
+workspace.xml
+gradle.xml
+migrations.xml
+misc.xml
+vcs.xml
+runConfigurations.xml
+compiler.xml

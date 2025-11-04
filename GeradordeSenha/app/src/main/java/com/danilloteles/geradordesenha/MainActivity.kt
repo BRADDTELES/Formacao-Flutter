@@ -1,5 +1,6 @@
 package com.danilloteles.geradordesenha
 
+import android.R
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -36,6 +37,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,6 +48,7 @@ import com.danilloteles.geradordesenha.ui.theme.Gray100
 import com.danilloteles.geradordesenha.ui.theme.Gray900
 import com.danilloteles.geradordesenha.ui.theme.Teal700
 import com.danilloteles.geradordesenha.ui.theme.White
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
    override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +65,24 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Home() {
 
-   var password by remember { mutableStateOf("123456") }
+   val clipboardManager = LocalClipboardManager.current //Funcionalidade de Copiar e Colar do Compose
+
+   var password by remember { mutableStateOf("") }
+   var strength by remember { mutableStateOf("") } // Força da Senha
+
+   val specialCharacters = arrayOf(
+      "!","$","%","(",")",",",":","<",">","/","]","~","[","@","?","|"
+   )
+
+   val upperCaseLetters = arrayOf(
+      "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P",
+      "Q","R","S","T","U","V","X","Z","W","Y"
+   )
+
+   val lowerCaseLetters = arrayOf(
+      "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p",
+      "q","r","s","t","u","v","x","z","w","y"
+   )
 
    Scaffold(
       topBar = {
@@ -112,7 +133,7 @@ fun Home() {
 
             IconButton(
                onClick = {
-
+                  clipboardManager.setText(annotatedString = AnnotatedString(password))
                },
                modifier = Modifier
                   .size(50.dp)
@@ -131,6 +152,13 @@ fun Home() {
             IconButton(
                onClick = {
 
+                  val numbers = Random.nextInt(100000, 999999)// Gerar 6 numeros aleátorios
+                  password = "${specialCharacters.random()}${specialCharacters.random()}" +
+                          "${numbers}" +
+                          "${upperCaseLetters.random()}${upperCaseLetters.random()}" +
+                          "${lowerCaseLetters.random()}${lowerCaseLetters.random()}"
+
+                  strength = "Senha Forte"
                },
                modifier = Modifier
                   .size(50.dp)
@@ -148,6 +176,13 @@ fun Home() {
             } // Fechamento do IconButton Refresh
 
          } // Fechamento Row
+
+         Text(
+            text = strength,
+            fontSize = 18.sp,
+            color = Teal700,
+            fontWeight = FontWeight.Bold
+         )
 
       }
 
